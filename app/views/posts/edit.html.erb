@@ -1,0 +1,12 @@
+<%=form_for @post do |f| %>
+<%=f.textfield :title%>
+<%=f.textarea :comment%>
+<%=f.address :comment%>
+<%=f.collection_select :owner_id, User.all, :id, :name %>
+
+<%= f.fields_for :categories, post.categories.build do |categories_fields| %>
+    <%= categories_fields.text_field :name %>
+  <% end %>
+
+<%=f.submit %>
+<%=end %>

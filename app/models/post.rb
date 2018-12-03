@@ -5,9 +5,21 @@ class Post < ApplicationRecord
   has_many :user_posts
   has_many :posts, through: :user_posts
 
+  def category_name
+    category.name if category
+  end
+
+  def owner_name
+    owner.name if owner
+  end
+
+  def followed_count
+    Post.users.count
+  end
+
   def category_attributes=(category_attributes)
     category_attributes.values.each do |category_attribute|
-      category = Category.find(category_attribute)
+      category = Category.find_by(category_attribute)
       self.categories << category
     end
   end
