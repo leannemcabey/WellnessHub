@@ -1,0 +1,2 @@
+class UserIntentionsController < ApplicationController
+end
