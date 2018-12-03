@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_185046) do
+ActiveRecord::Schema.define(version: 2018_12_03_184707) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "intentions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.boolean "complete"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,14 +41,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_185046) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_intentions", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "intention_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "complete"
   end
 
   create_table "user_posts", force: :cascade do |t|

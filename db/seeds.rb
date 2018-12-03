@@ -1,7 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create(name: "Harry", email: "harry@mail.com", password: "1234567")
+User.create(name: "Ron", email: "ron@mail.com", password: "1234567")
+User.create(name: "Hermione", email: "hermione@mail.com", password: "1234567")
+
+Intention.create(user_id: 1, name: 'Be Happy')
+Intention.create(user_id: 1, name: 'Be Fit')
+Intention.create(user_id: 1, name: 'Eat Well')
+Intention.create(user_id: 2, name: 'Exercise More')
+Intention.create(user_id: 2, name: 'Positivity')
+Intention.create(user_id: 3, name: 'Strengthen Relationships')
+Intention.create(user_id: 3, name: 'Be Nice to my Body')
+
+Category.create(name: 'Mental Heath')
+Category.create(name: 'Relationships')
+Category.create(name: 'Therapy')
+Category.create(name: 'Productivity')
+Category.create(name: 'Mindfulness')
+Category.create(name: 'Exercise')
+Category.create(name: 'Nutrition & Medicine')
+Category.create(name: 'Sleep')
+
+Post.create(title: 'First Post', address: '11 Broadway, New York, NY', comment: 'This is the first post', url: 'google.com', owner_id: 1)
+Post.create(title: 'Second Post', address: '11 Broadway, New York, NY', comment: 'This is the second post', url: 'google.com', owner_id: 2)
+Post.create(title: 'Third Post', address: '11 Broadway, New York, NY', comment: 'This is the third post', url: 'google.com', owner_id: 3)
+Post.create(title: 'Fourth Post', address: '11 Broadway, New York, NY', comment: 'This is the fourth post', url: 'google.com', owner_id: 1)
+Post.create(title: 'Fifth Post', address: '11 Broadway, New York, NY', comment: 'This is the fifth post', url: 'google.com', owner_id: 2)
+Post.create(title: 'Sixth Post', address: '11 Broadway, New York, NY', comment: 'This is the sixth post', url: 'google.com', owner_id: 3)
+
+PostCategory.create(post_id: 1, category_id: 1)
+PostCategory.create(post_id: 2, category_id: 2)
+PostCategory.create(post_id: 3, category_id: 3)
+PostCategory.create(post_id: 4, category_id: 4)
+PostCategory.create(post_id: 5, category_id: 5)
+PostCategory.create(post_id: 6, category_id: 6)
+
+UserPost.create(user_id: 1, post_id: 2, intention_id: 1)
+UserPost.create(user_id: 1, post_id: 3, intention_id: 2)
+UserPost.create(user_id: 1, post_id: 5, intention_id: 2)
+UserPost.create(user_id: 2, post_id: 1, intention_id: 4)
+UserPost.create(user_id: 2, post_id: 3, intention_id: 4)
+UserPost.create(user_id: 2, post_id: 4, intention_id: 5)
+UserPost.create(user_id: 3, post_id: 1, intention_id: 6)
+UserPost.create(user_id: 3, post_id: 2, intention_id: 6)
+UserPost.create(user_id: 3, post_id: 1, intention_id: 7)
+UserPost.create(user_id: 3, post_id: 4, intention_id: 7)
