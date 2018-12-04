@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    byebug
     @post = Post.new(post_params)
     @category_ids = params[:post][:post_categories_attributes]['0'][:id].reject {|id| id.empty?}
     @category_ids.each do |id|

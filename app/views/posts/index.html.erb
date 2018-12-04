@@ -3,11 +3,18 @@
 <%=error %>
 <% end %>
 <% end %>
+<%if flash[:messages]%>
+<%flash[:messages].each do |error|%>
+<%=error %>
+<% end %>
+<% end %>
 <%@categories.each do |category|%>
    <h2><%= category.name %></h2>
-   <% category.posts.each do |post|%><%= %>
+   <% category.posts.each do |post|%>
+   <h3><%= post.title%></h3>
        <%=post.comment %><br>
        Url:<%= post.url %><br>
+       Save to my intentions: <br>
        <%=form_for @user_post do |f|%>
          <%=f.collection_select(:user_id, User.all, :id, :name)%>
          <%=f.label :intention_name, "intention:"%>
