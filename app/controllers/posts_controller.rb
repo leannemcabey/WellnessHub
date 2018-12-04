@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   def index
     @categories=Category.all
     @user=User.new
+    @user_post=UserPost.new
   end
 
 

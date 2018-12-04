@@ -1,20 +1,26 @@
-<%@categories.each do |category%>
-   <%= category.name %>
+<%if flash[:errors]%>
+<%flash[:errors].each do |error|%>
+<%=error %>
+<% end %>
+<% end %>
+<%@categories.each do |category|%>
+   <h2><%= category.name %></h2>
    <% category.posts.each do |post|%><%= %>
-       <h3><%=post.title %></h3>
        <%=post.comment %><br>
-       Url:<%= @post.url %><br>
-
+       Url:<%= post.url %><br>
        <%=form_for @user_post do |f|%>
-         <%= f.collection_select(:user_id, User.all, :id, :name)%>
-         <%= f.text_field :intention_name, list: "intentions_autocomplete"%>
-         <datalist id="intention_autocomplete">
+         <%=f.collection_select(:user_id, User.all, :id, :name)%>
+         <%=f.label :intention_name, "intention:"%>
+         <%=f.text_field :intention_name, list: "intentions_autocomplete"%>
+         <%=f.hidden_field :post_id, value: post.id  %>
+         <datalist id="intentions_autocomplete">
           <% Intention.all.each do |category| %>
             <option value="<%= category.name %>">
           <% end %>
          </datalist>
-         <%= f.submit %>
-      <% end %>
+         <%= f.submit("save to post") %>
+       <% end %>
+
 
   <% end %>
 <%end%>

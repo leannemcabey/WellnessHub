@@ -2,10 +2,18 @@
 
 <h3>My Wellness Intentions:</h3>
 
-<p>
-<% @user.intentions.each do |intention| %>
-  <%= intention.name %> : <%= pluralize(@user.post_count_by_intention(intention), 'Post') %><br>
-<% end %>
-</p>
 
-button to edit
+<% @user.intentions.each do |intention| %>
+ <%= intention.name %> : <%= pluralize(@user.post_count_by_intention(intention), 'Post') %><br>
+
+  <% end %>
+
+  <% @user.intentions.each do |intention| %>
+   <h3><%= intention.name %></h3>
+    <%intention.posts.each do |post| %><br>
+    <%= post.comment %><br>
+    <%=link_to post.url %><br>
+    <% end %>
+    <% end %>
+
+button to edit user

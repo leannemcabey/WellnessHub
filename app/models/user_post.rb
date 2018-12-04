@@ -3,12 +3,23 @@ class UserPost < ApplicationRecord
   belongs_to :user
   belongs_to :intention
 
+
+
   def intention_name
     intention.name if intention
   end
 
-  def intention_name=(name)
-    intention_id= Intention.find_by(name: name)
+  def user_intentions
+    user.intentions
   end
+
+  def intention_name=(name)
+    found_intention=Intention.find_or_create_by(name: name)
+    self.intention=found_intention
+   self.user.intentions << found_intention
+  end
+
+
+
 
 end

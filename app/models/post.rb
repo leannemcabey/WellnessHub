@@ -4,9 +4,8 @@ class Post < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :user_posts
   has_many :users, through: :user_posts
-
   def category_name
-    category.name if category
+    categories.map{|cat|cat.name} if self.categories
   end
 
   def owner_name
@@ -14,7 +13,7 @@ class Post < ApplicationRecord
   end
 
   def followed_count
-    Post.users.count
+    users.count
   end
 
   def category_attributes=(category_attributes)
