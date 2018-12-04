@@ -1,6 +1,26 @@
 <h2><%= @post.title %></h2>
-<%= @post.comment %>
-Url:<%= @post.url %>
-Category:<%= @post.category_name %><br>
-Posted by: <%= @post.owner_name %><br>
-Followed by <%= @post.followed_count%> Users
+
+<div>
+  Author Comment: <%= @post.comment.length > 0 ? @post.comment : 'N/A' %>
+</div>
+<br>
+<div>
+  Url: <%= @post.url.length > 0 ? @post.url : 'N/A' %>
+</div>
+<br>
+<div>
+  Categories:
+  <ul>
+    <% @post.category_name.each do |name| %>
+      <li> <%= name %> </li>
+    <% end %>
+  </ul>
+</div>
+<br>
+<div>
+  Posted by: <%= @post.owner_name %><br>
+</div>
+<br>
+<div>
+  Followed by: <%= pluralize(@post.followed_count, 'User') %>
+</div>
