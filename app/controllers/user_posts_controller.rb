@@ -4,6 +4,7 @@ class UserPostsController < ApplicationController
     if !@new_post.valid?
       flash[:errors]=@new_post.errors.full_messages
       redirect_to "/posts"
+      return
     end
     db_record = UserPost.where(["user_id = ? and post_id = ? and intention_id = ?", @new_post.user_id, @new_post.post_id, @new_post.intention_id])
     if  db_record.length < 1

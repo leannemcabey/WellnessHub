@@ -2,7 +2,6 @@
 
 <h3>My Wellness Intentions:</h3>
 
-
 <% @user.intentions.each do |intention| %>
  <%= intention.name %> :<%= pluralize(intention.posts_count, 'Post') %><br>
   <% end %>
