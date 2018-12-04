@@ -20,8 +20,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post=post.create(post_params)
-    if @post.valid?
+    byebug
+    @post = Post.new(post_params)
+    @category_ids = params[:post][:post_categories_attributes]['0'][:id].reject {|id| id.empty?}
+    @category_ids.each do |id|
+      category = Category.find(id)
+      @post.categories << category
+    end
+
+    @post.save
+
+    if @post.id
       redirect_to post_path(@post)
     else render action: :new
     end
@@ -49,6 +58,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:category_id)
+    params.require(:post).permit(:title, :address, :comment, :url, :owner_id)
   end
 end

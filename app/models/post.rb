@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :user_posts
   has_many :users, through: :user_posts
+  accepts_nested_attributes_for :post_categories
+
   def category_name
     categories.map{|cat|cat.name} if self.categories
   end
@@ -16,11 +18,11 @@ class Post < ApplicationRecord
     users.count
   end
 
-  def category_attributes=(category_attributes)
-    category_attributes.values.each do |category_attribute|
-      category = Category.find_by(category_attribute)
-      self.categories << category
-    end
-  end
+  # def post_categories_attributes=(post_categories_attributes)
+  #   post_categories_attributes.values[:id].each do |post_category_attribute|
+  #     category = Category.find_by(category_attribute)
+  #     self.post_categories << category
+  #   end
+  # end
 
 end
