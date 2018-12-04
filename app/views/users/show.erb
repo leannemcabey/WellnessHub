@@ -8,4 +8,13 @@
   <% end %>
 <br>
 
+
+  <% @user.intentions.each do |intention| %>
+   <h3><%= intention.name %></h3>
+    <%intention.posts.each do |post| %><br>
+    <%= post.comment %><br>
+    <%=link_to post.url %><br>
+    <% end %>
+    <% end %>
+
 button to edit user
