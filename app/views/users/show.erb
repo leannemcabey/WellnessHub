@@ -4,16 +4,8 @@
 
 
 <% @user.intentions.each do |intention| %>
- <%= intention.name %> : <%= pluralize(@user.post_count_by_intention(intention), 'Post') %><br>
-
+ <%= intention.name %> :<%= pluralize(intention.posts_count, 'Post') %><br>
   <% end %>
-
-  <% @user.intentions.each do |intention| %>
-   <h3><%= intention.name %></h3>
-    <%intention.posts.each do |post| %><br>
-    <%= post.comment %><br>
-    <%=link_to post.url %><br>
-    <% end %>
-    <% end %>
+<br>
 
 button to edit user

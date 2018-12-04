@@ -8,10 +8,10 @@ class UserPostsController < ApplicationController
     db_record = UserPost.where(["user_id = ? and post_id = ? and intention_id = ?", @new_post.user_id, @new_post.post_id, @new_post.intention_id])
     if  db_record.length < 1
       @new_post.save
-      flash[:errors]=["the post has benn saved"]
+      flash[:messages]=["the post has been saved"]
         redirect_to "/posts"
     else
-      flash[:errors]=["Already saved"]
+      flash[:messages]=["Already saved"]
       redirect_to "/posts"
     end
   end
