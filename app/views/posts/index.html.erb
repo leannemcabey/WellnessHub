@@ -21,9 +21,10 @@ Sign in to save posts:
 <%end%>
 <% end %>
 
-
-
-
+<%= form_tag "/filter" do %>
+<%=collection_select(:category, :id, @all_categories, :id, :name, include_blank: "All", prompt: "Please choose a category")%>
+<%= submit_tag "Filter Posts by category"%>
+<% end %>
 
 <%@categories.each do |category|%>
    <h2><%= category.name %></h2>

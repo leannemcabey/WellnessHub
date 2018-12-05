@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create_then_user'
   post '/signin_to_posts', to: 'sessions#create_then_posts'
   patch '/change_intention_status/:id', to: 'intentions#change_status', as: 'change_intention_status'
+  post '/filter', to: 'posts#filter_to_index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

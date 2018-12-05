@@ -8,7 +8,18 @@ class PostsController < ApplicationController
       @intentions=@user.intentions
       @user_post=@user.user_posts.build
     end
-    @categories=Category.all
+    if flash[:category_id] && !flash[:category_id].empty?
+      @categories=Category.where(id:flash[:category_id])
+
+    else
+      @categories=Category.all
+    end
+    @all_categories=Category.all
+  end
+
+  def filter_to_index
+    flash[:category_id]=params[:category][:id]
+    redirect_to posts_path
   end
 
   def show
