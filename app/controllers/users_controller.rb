@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
+
   before_action :find_user, only: [:edit, :update, :destroy]
-    before_action :require_login, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
+
   def show
-    @user=current_user
-  if session[:user_id]!=params[:id]
-    redirect_to user_path(session[:user_id])
-    return
-  end
+    if session[:user_id]!=params[:id]
+      redirect_to user_path(session[:user_id])
+      return
+    end
+  @user=current_user
+  @complete_intentions = current_user.intentions.select {|intention| intention.complete == true}
+  @incomplete_intentions = current_user.intentions.select {|intention| intention.complete == false}
   end
 
   def new
