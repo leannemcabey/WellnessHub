@@ -8,9 +8,12 @@ class UsersController < ApplicationController
       redirect_to user_path(session[:user_id])
       return
     end
-  @user=current_user
-  @complete_intentions = current_user.intentions.select {|intention| intention.complete == true}
-  @incomplete_intentions = current_user.intentions.select {|intention| intention.complete == false}
+
+    @user = current_user
+
+    @complete_intentions = current_user.intentions.select {|intention| intention.complete == true}
+    @incomplete_intentions = current_user.intentions.select {|intention| intention.complete == false}
+    @all_intentions = [@incomplete_intentions, @complete_intentions]
   end
 
   def new

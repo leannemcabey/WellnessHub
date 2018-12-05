@@ -4,6 +4,4 @@ class User < ApplicationRecord
   has_many :user_posts, through: :intentions
   has_many :posts, through: :user_posts
 
-
-
 end
