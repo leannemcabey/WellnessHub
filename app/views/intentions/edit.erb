@@ -1,0 +1,18 @@
+<h1>Edit Your Intention</h1>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<%= form_for @intention do |f| %>
+  Intention Name: <%= f.text_field :name %><br>
+  <%= f.submit %>
+<% end %>
+
+<p>
+<%= form_for @intention, method: 'delete' do |f| %>
+  <%= f.submit 'Delete Intention' %>
+<% end %>
+</p>

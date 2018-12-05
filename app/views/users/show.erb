@@ -1,7 +1,12 @@
 <h1> Welcome, <%= @user.name %>! </h1>
 
+<% if flash[:messages] %>
+  <%= flash[:messages] %>
+<% end %>
+
 <button><h3> <%= link_to "Browse Wellness Posts", posts_path %> </h3></button>
 <button><h3> <%= link_to "Create a New Wellness Post", new_post_path %> </h3></button>
+<button><h3> <%= link_to "Set a New Intention", new_intention_path %> </h3></button>
 
 <h3>My Wellness Intentions:</h3>
 
