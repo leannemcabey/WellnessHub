@@ -4,13 +4,30 @@
           # nothing to do here!
       end
 
-      def create_and_go_posts
-          session[:user_id] = params[:user][:id]
-          redirect_to '/posts'
+
+      def create_then_posts
+          if User.find_by(user_params)
+          session[:user_id]=params[:user][:id]
+          @user = current_user
+          redirect_to posts_path
+        else flash[:message]="incorrect username or password"
+            redirect_to '/signin'
+        end
       end
 
-      def create_and_go_to_user
-          session[:user_id] = params[:user][:id]
-          redirect_to '/posts'
+      def create_then_user
+          if User.find_by(user_params)
+          session[:user_id]=params[:user][:id]
+          @user = current_user
+          redirect_to user_path(@user)
+        else flash[:message]="incorrect username or password"
+          redirect_to '/signin'
+        end
       end
-  end
+
+      private
+
+      def user_params
+        params.require(:user).permit(:id, :name, :email, :password)
+      end
+end

@@ -12,7 +12,11 @@
 <%if session[:user_id]%>
 Logged in as <%=@user.name%>
 <%else%>
-<%= link_to 'sign in','/signin' %> to save posts
+Sign in to save posts:
+<%= form_tag '/signin_to_posts' do%>
+<%=collection_select(:user, :id, User.all, :id, :name)%>
+<%=submit_tag "submit"%>
+<%end%>
 <% end %>
 
 

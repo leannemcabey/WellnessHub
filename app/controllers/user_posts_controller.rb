@@ -19,11 +19,7 @@ class UserPostsController < ApplicationController
 
   private
 
-
-
 def post_params
-  params.require(:user_post).permit(:user_id,:post_id,:intention_name)
-
+  params.require(:user_post).permit(:user_id, :post_id, :intention_name)
 end
-
 end

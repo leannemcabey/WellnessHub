@@ -8,8 +8,9 @@
   <%=f.text_field :address%><br>
   <%=f.label :url%>
   <%=f.url_field :url%><br>
-  <%=f.label :owner_id%>
-  <%=f.collection_select :owner_id, User.all, :id, :name, prompt: true %><br>
+  <%=f.label :owner_id%>: 
+  <%=@post.owner_name%><br>
+  <%=f.hidden_field :owner_id%>
   <%=f.label :categories%>
   <%= f.fields_for :post_categories, @post.post_categories.build do |post_categories_fields| %>
     <%= post_categories_fields.collection_check_boxes :id, Category.all, :id, :name, prompt: true %><br>
