@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @complete_intentions = current_user.intentions.select {|intention| intention.complete == true}
     @incomplete_intentions = current_user.intentions.select {|intention| intention.complete == false}
+    @all_intentions = [@incomplete_intentions, @complete_intentions]
   end
 
   def new

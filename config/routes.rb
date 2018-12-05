@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :intentions, only: [:new, :create, :edit, :update, :destroy]
-  resources :user_posts, only: [:create]
+  resources :user_posts, only: [:create, :destroy]
   resources :post_categories, only: [:create]
   resources :posts
   # resources :categories
