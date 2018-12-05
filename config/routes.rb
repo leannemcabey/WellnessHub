@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create_then_user'
   post '/signin_to_posts', to: 'sessions#create_then_posts'
+  patch '/change_intention_status/:id', to: 'intentions#change_status', as: 'change_intention_status'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

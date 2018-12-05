@@ -34,6 +34,13 @@ class IntentionsController < ApplicationController
       end
     end
 
+    def change_status
+      find_intention
+      @intention.complete = !@intention.complete
+      @intention.save
+      redirect_to user_path(current_user)
+    end
+
     def destroy
       @intention.destroy
       redirect_to user_path(current_user)
