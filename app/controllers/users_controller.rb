@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+
   def show
+    @complete_intentions = current_user.intentions.select {|intention| intention.complete == true}
+    @incomplete_intentions = current_user.intentions.select {|intention| intention.complete == false}
   end
 
   def new
