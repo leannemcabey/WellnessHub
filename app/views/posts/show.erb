@@ -24,3 +24,21 @@
 <div>
   Followed by: <%= pluralize(@post.followed_count, 'User') %>
 </div>
+Save to my intentions: <br>
+<%=form_for @user_post do |f|%>
+  <%=f.label :intention_name, "intention:"%>
+  <%=f.text_field :intention_name, list: "intentions_autocomplete"%>
+  <%=f.hidden_field :post_id, value: @post.id  %>
+  <%=f.hidden_field :user_id, value: @user.id  %>
+  <datalist id="intentions_autocomplete">
+   <% @intentions.each do |category| %>
+     <option value="<%= category.name %>">
+   <% end %>
+  </datalist>
+  <%= f.submit("save to post") %>
+<% end %>
+<% if session[:user_id] && @post.owner_id==@user.id %>
+You posted this.<%=button_to('edit post', edit_post_path(@post.id), method: "get")%>
+<%=button_to('delete post', post_path(@post),
+ method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
+<% end %>

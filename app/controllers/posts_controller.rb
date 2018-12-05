@@ -16,7 +16,12 @@ class PostsController < ApplicationController
 
   def show
     set_post
-    byebug
+    if session[:user_id]
+      @user=current_user
+      @intentions=@user.intentions
+      @user_post=@user.user_posts.build
+    end
+    @categories=Category.all
   end
 
   def edit

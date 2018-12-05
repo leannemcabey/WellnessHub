@@ -1,6 +1,8 @@
+
+<h1> Wellness Posts </h1>
 <%if flash[:errors]%>
 <%flash[:errors].each do |error|%>
-<%=error %>
+<%=error %><br>
 <% end %>
 <% end %>
 <%if flash[:messages]%>
@@ -36,6 +38,7 @@ Sign in to save posts:
            <%=f.label :intention_name, "intention:"%>
            <%=f.text_field :intention_name, list: "intentions_autocomplete"%>
            <%=f.hidden_field :post_id, value: post.id  %>
+           <%=f.hidden_field :user_id, value: @user.id  %>
            <datalist id="intentions_autocomplete">
             <% @intentions.each do |category| %>
               <option value="<%= category.name %>">

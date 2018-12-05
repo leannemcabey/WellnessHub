@@ -9,8 +9,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
-  
+    <% if session[:user_id]%>
+        <button><h3>
+          <%= link_to "My Wellness Hub", user_path(session[:user_id]) %> </h3></button>
+
+          <% end %>
+    <button><h3> <%= link_to "Browse Wellness Posts", posts_path %> </h3></button>
+    <button><h3> <%= link_to "Create a New Wellness Post", new_post_path %> </h3></button>
+    <button><h3> <%= link_to "Set a New Intention", new_intention_path %> </h3></button>
+
+
     <%= yield %>
   </body>
 </html>
