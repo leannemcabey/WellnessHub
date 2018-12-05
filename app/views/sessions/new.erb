@@ -1,3 +1,8 @@
+<% if flash[:messages]%>
+  <% flash[:messages].each do |message| %>
+    <%=message%>
+  <% end %>
+<% end %>
 <%= form_tag '/signin' do%>
 <%=collection_select(:user, :id, User.all, :id, :name)%>
 <%=submit_tag "submit"%>

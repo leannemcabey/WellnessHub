@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:index]
   def index
     if session[:user_id]
       @user=current_user
