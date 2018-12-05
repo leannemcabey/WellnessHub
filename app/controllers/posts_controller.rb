@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:index]
+
   def index
     if session[:user_id]
       @user=current_user
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
 
   def show
     set_post
+    byebug
   end
 
   def edit
@@ -58,8 +60,11 @@ class PostsController < ApplicationController
 
 private
   def set_post
-    @post=Post.find(params[:id])
-
+    @post=Post.find_by(id: params[:id],owner_id:current_user.id)
+    if !@post
+      flash[:messages]=["You attempted to view a post that was deleted. You have been redirected to the index page"]
+      redirect_to posts_path
+    end
   end
 
   def post_params
