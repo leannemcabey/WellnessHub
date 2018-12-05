@@ -1,4 +1,5 @@
 class IntentionsController < ApplicationController
+    before_action :require_login
     before_action :find_intention, only: [:edit, :update, :destroy]
 
     def new

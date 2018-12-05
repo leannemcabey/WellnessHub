@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_login
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :filter_to_index]
 
   def index
     if session[:user_id]
@@ -10,9 +10,6 @@ class PostsController < ApplicationController
     end
     @categories=Category.all
   end
-
-
-
 
   def show
     set_post
