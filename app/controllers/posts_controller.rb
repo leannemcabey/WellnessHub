@@ -41,7 +41,10 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = Post.new(post_params)
+    object = LinkThumbnailer.generate(@post.url)
+    @post.comment=object.description if @post.comment.length < 1
     @category_ids = params[:post][:post_categories_attributes]['0'][:id].reject {|id| id.empty?}
     @category_ids.each do |id|
       category = Category.find(id)
@@ -51,7 +54,7 @@ class PostsController < ApplicationController
     @post.save
 
     if @post.id
-      redirect_to post_path(@post)
+      redirect_to edit_post_path(@post)
     else render action: :new
     end
 

@@ -27,8 +27,14 @@
    <h2><%= category.name %></h2>
    <% category.posts.each do |post|%>
    <br>
+   <div class="post">
         <h3><%=post.title%></h3>
-       <%=post.comment %>
+
+      <% object = LinkThumbnailer.generate(post.url.to_s) %>
+      <%=post.comment %><br>
+      <%= object.description%>
+
+
        <%=link_to post.url, post.url %>
        <% if session[:user_id]%>
          Save to my intentions: <br>
@@ -45,14 +51,13 @@
            <%= f.submit("save to post") %>
          <% end %>
          <% if session[:user_id] && post.owner_id==@user.id %>
-         You posted this.<%=button_to('edit post', edit_post_path(post.id), method: "get")%>
-         <%=button_to('delete post', post_path(post),
-          method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
-       <% end %>
-         <% else %>
+           You posted this.<%=button_to('edit post', edit_post_path(post.id), method: "get")%>
+           <%=button_to('delete post', post_path(post),
+            method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
+            <% end %>
+      <% else %>
         <%= link_to 'sign in','/signin' %> to save this post
-        <% end %>
-
-
+        </div>
+      <% end %>
   <% end %>
 <%end%>
