@@ -30,9 +30,7 @@
    <div class="post">
         <h3><%=post.title%></h3>
 
-      <% object = LinkThumbnailer.generate(post.url.to_s) %>
       <%=post.comment %><br>
-      <%= object.description%>
 
 
        <%=link_to post.url, post.url %>
