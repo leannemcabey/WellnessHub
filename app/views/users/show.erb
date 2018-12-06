@@ -1,3 +1,4 @@
+<div class="main-wrapper">
 <h1> Welcome, <%= @user.name %>! </h1>
 
 <div>
@@ -9,29 +10,34 @@
     <%= flash[:messages] %>
   <% end %>
 </div>
-
+<div class="user-top">
 <h2>My Wellness Intentions:</h2>
 
 <% if @user.intentions.empty? %>
   <%= "You haven't set any intentions yet!" %>
 <% else %>
-  <div>
+
     <% @user.intentions.each do |intention| %>
      <%= intention.name %>: <%= pluralize(intention.posts_count, 'Post') %><br>
       <% end %>
     <br>
   </div>
 
+
   <% @all_intentions.each do |intention_group| %>
     <% if intention_group == @incomplete_intentions %>
-      <h2><%= 'Incomplete Intentions' %></h2>
+      <h2 class=header><%= 'Incomplete Intentions' %></h2>
     <% else %>
-      <h2><%= 'Complete Intentions' %></h2>
+      <h2 class=header><%= 'Complete Intentions' %></h2>
     <% end %>
 
     <% intention_group.each do |intention| %>
-     <h3><%= intention.name %></h3>
-     <h5> <%= intention.complete == true ? 'COMPLETE' : 'INCOMPLETE' %> </h5>
+
+     <div class="intention">
+       <div class="header-intention">
+      <h5> <%= intention.complete == true ? 'COMPLETE' : 'INCOMPLETE' %> </h5>
+
+       <h3><%= intention.name %></h3>
 
      <%= form_for intention, method: 'patch', url: change_intention_status_path(intention) do |f| %>
        <% if intention.complete == false %>
@@ -40,8 +46,11 @@
         <%= f.submit 'Mark as Incomplete' %>
       <% end %>
      <% end %>
+     </div>
+
 
       <%intention.posts.each do |post| %><br>
+      <div class=post>
         <%= post.comment %><br>
         <%=link_to post.url %><br>
 
@@ -50,10 +59,14 @@
           <%= f.submit 'Remove Post From Intention'%>
         <% end %>
 
+      </div>
       <% end %>
 
+
       <p><button><%= link_to 'Edit Intention', edit_intention_path(intention) %></button></p>
+        </div>
     <% end %>
 
   <% end %>
 <% end %>
+  </div>

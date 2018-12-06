@@ -1,12 +1,16 @@
-<h1>Set a New Intention</h1>
-
-<% if flash[:errors] %>
+<div class="errors"<% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
     <%= error %>
   <% end %>
 <% end %>
+</div>
+<div class="main-wrapper">
+  <h1>Set a New Intention</h1>
 
-<%= form_for @intention do |f| %>
+
+
+<%= form_for @intention, html: {class: "form"} do |f| %>
   Intention Name: <%= f.text_field :name %><br>
   <%= f.submit %>
 <% end %>
+</div>

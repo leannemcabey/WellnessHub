@@ -5,28 +5,30 @@
       end
 
       def create_then_posts
-          if User.find_by(user_params)
-          session[:user_id]=params[:user][:id]
+        user=User.find_by(user_params)
+          if user
+          session[:user_id]=user.id.to_s
           @user = current_user
           redirect_to posts_path
-        else flash[:message]="incorrect username or password"
+        else flash[:messages]=["incorrect username or password"]
             redirect_to '/signin'
         end
       end
 
       def create_then_user
-          if User.find_by(user_params)
-          session[:user_id]=params[:user][:id]
+        user=User.find_by(user_params)
+          if user
+          session[:user_id]=user.id.to_s
           @user = current_user
           redirect_to user_path(@user)
-        else flash[:message]="incorrect username or password"
+        else flash[:messages]=["incorrect username or password"]
           redirect_to '/signin'
         end
       end
 
       def logout
         session[:user_id]= nil
-        redirect_to '/signin'
+        redirect_to '/welcome'
       end
 
 

@@ -7,25 +7,37 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
 
   <body>
+<div class="nav-bar">
+<ul>
+
     <% if session[:user_id]%>
-        <button><h3>
-          <%= link_to "My Wellness Hub", user_path(session[:user_id]) %> </h3></button>
+    <li>
+          <%= link_to "My Wellness Hub", user_path(session[:user_id]) %> </h3></li>
 
           <% end %>
-    <button><h3> <%= link_to "Browse Wellness Posts", posts_path %> </h3></button>
-    <button><h3> <%= link_to "Create a New Wellness Post", new_post_path %> </h3></button>
-    <button><h3> <%= link_to "Set a New Intention", new_intention_path %> </h3></button>
+    <li> <%= link_to "Browse Wellness Posts", posts_path %> </li>
+    <li> <%= link_to "Set a New Intention", new_intention_path %> </li>
     <% if session[:user_id] %>
-      <button> <h3> <%= link_to "Logout", logout_path %> </h3> </button>
+  <li><%= link_to "Share a Resource", new_post_path %> </h3></li>
+      <li> <%= link_to "Logout", logout_path %></li>
+
     <% else %>
-      <button> <h3> <%= link_to "Login", login_path %> </h3> </button>
+      <li> <%= link_to "Login", login_path %></li>
     <% end %>
+    </ul>
+<% if @user && @user.id %>
+<div id=user-status> Logged in as <%=@user.name%></div>
+<% end %>
+    </div>
 
 
     <%= yield %>
+
   </body>
 </html>

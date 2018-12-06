@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:show, :edit, :update, :destroy]
 
   def show
+
     if session[:user_id]!=params[:id]
       redirect_to user_path(session[:user_id])
       return

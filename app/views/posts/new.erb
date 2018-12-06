@@ -1,5 +1,6 @@
-<h1>Create New Post</h1>
-<%= form_for @post do |f| %>
+<div class="main-wrapper"><h1>Create New Post</h1>
+
+<%= form_for @post, html: {class: "form"} do |f| %>
   <%=f.label :title%>
   <%=f.text_field :title%><br>
   <%=f.label :comment%>
@@ -11,10 +12,13 @@
   <%=f.label :owner_id%>:
   <%=@post.owner_name%><br>
   <%=f.hidden_field :owner_id%>
-  <%=f.label :categories%>
-  <%= f.fields_for :post_categories, @post.post_categories.build do |post_categories_fields| %>
-    <%= post_categories_fields.collection_check_boxes :id, Category.all, :id, :name, prompt: true %><br>
+  <span id=categoriesLabel><%=f.label :categories%></span>
+  <div id="categories">
+  <%= f.fields_for :post_categories,  @post.post_categories.build do |post_categories_fields| %>
+    <%= post_categories_fields.collection_check_boxes :id, Category.all, :id, :name, prompt: true%><br>
   <% end %>
 
   <%=f.submit %>
 <%end %>
+</div>
+</div>

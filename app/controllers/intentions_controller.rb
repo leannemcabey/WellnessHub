@@ -3,6 +3,7 @@ class IntentionsController < ApplicationController
     before_action :find_intention, only: [:edit, :update, :destroy]
 
     def new
+      @user=current_user
       @intention = Intention.new
     end
 

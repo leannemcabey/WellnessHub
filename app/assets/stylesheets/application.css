@@ -13,3 +13,71 @@
  *= require_tree .
  *= require_self
  */
+ body {
+    background-image: url("https://images.pexels.com/photos/268022/pexels-photo-268022.jpeg?cs=srgb&dl=blur-calm-close-up-268022.jpg&fm=jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: white;
+  }
+
+  input[type=text],input[type=password],input[type=url],.form textarea, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .form input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form input[type=submit] :hover {
+    background-color: #45a049;
+  }
+  #categoriesLabel{display:block;margin:10px auto}
+  #categories label{width:100px;display:inline-block;vertical-align: middle;}
+  #categories input{left: 20px;vertical-align:middle;}
+ .main-wrapper{width:600px;margin:20px auto;padding:50px;background:rgba(0,0,0,0.5);padding:10px;text-align:center;}
+ .nav-bar{:margin:0 50px auto auto; display:block; text-align: center;padding:10px;}
+ .nav-bar::after{content: "";
+    clear: both;
+    display: table;}
+ .nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-bar li {
+ float: left;
+ width:200px;
+ background-color: darkSlateGrey;
+ margin: 0 5px;
+ padding:10px;
+}
+ul {list-style-type:none;line-height: 2em;}
+ .intention{width:100%;margin:20px auto;padding:10px;background:rgba(0,0,0,0.5);text-align:center;box-sizing: border-box;}
+ .header{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;}
+ .header-intention{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;display:flex;justify-content:space-between;align-items:center;}
+ .user-top{width:100%; margin:0px auto; background:rgba(0,0,0,0.3);padding: 20px;
+ box-sizing: border-box;text-align: center;}
+ .post{width:100%; margin:0px auto; background:rgba(0,50,50,0.7);padding: 20px;
+ box-sizing: border-box;text-align: center;}
+ .post-title{margin:10px auto;}
+ .post-comment{margin:10px;}
+ .post-save{margin-top:20px;}
+ .top-header{margin:20px 20px 50px 20px; text-align:center}
+  button {background:darkSlateGrey;color:white;}
+  a {text-decoration: none;color:peachPuff;}
+#user-status{float:right;}
+button {color:black;}

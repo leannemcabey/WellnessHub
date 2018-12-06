@@ -1,9 +1,13 @@
-<% if flash[:messages]%>
+<div class="main-wrapper">
+  <% if flash[:messages]%>
   <% flash[:messages].each do |message| %>
     <%=message%>
   <% end %>
 <% end %>
-<%= form_tag '/signin' do%>
-<%=collection_select(:user, :id, User.all, :id, :name)%>
+<h2>Please Sign In</h2>
+<%= form_for @user, url: '/signin', html: {class: "form"} do |f|%>
+<%= f.label :name %>
+<%= f.text_field :name %>
 <%=submit_tag "submit"%>
 <%end%>
+</div>
