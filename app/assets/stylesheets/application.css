@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   background-image: url("blur-calm-close-up-268022.jpg");
+   background-repeat:no-repeat;
+   background-size:100%;
+   background-attachment: fixed;
+ }
