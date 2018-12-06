@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     else
       @categories=Category.all
     end
-    @all_categories=Category.all
+      @all_categories=Category.all
   end
 
   def filter_to_index

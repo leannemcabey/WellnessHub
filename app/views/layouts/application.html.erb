@@ -19,6 +19,11 @@
     <button><h3> <%= link_to "Browse Wellness Posts", posts_path %> </h3></button>
     <button><h3> <%= link_to "Create a New Wellness Post", new_post_path %> </h3></button>
     <button><h3> <%= link_to "Set a New Intention", new_intention_path %> </h3></button>
+    <% if session[:user_id] %>
+      <button> <h3> <%= link_to "Logout", logout_path %> </h3> </button>
+    <% else %>
+      <button> <h3> <%= link_to "Login", login_path %> </h3> </button>
+    <% end %>
 
 
     <%= yield %>

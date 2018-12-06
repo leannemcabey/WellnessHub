@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :posts
   # resources :categories
   resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
-  get '/signin', to: 'sessions#new'
+  get '/signin', to: 'sessions#new', as: 'login'
+  get '/logout', to: 'sessions#logout', as: 'logout'
   post '/signin', to: 'sessions#create_then_user'
   post '/signin_to_posts', to: 'sessions#create_then_posts'
   patch '/change_intention_status/:id', to: 'intentions#change_status', as: 'change_intention_status'
   post '/filter', to: 'posts#filter_to_index'
+  get '/welcome', to: 'static_pages#welcome'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

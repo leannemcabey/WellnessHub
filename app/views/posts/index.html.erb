@@ -1,3 +1,6 @@
+<%if session[:user_id]%>
+  Logged in as <%=@user.name%>
+<% end %>
 
 <h1> Wellness Posts </h1>
 <%if flash[:errors]%>
@@ -11,14 +14,8 @@
   <% end %>
 <% end %>
 
-<%if session[:user_id]%>
-Logged in as <%=@user.name%>
-<%else%>
-Sign in to save posts:
-<%= form_tag '/signin_to_posts' do%>
-<%=collection_select(:user, :id, User.all, :id, :name)%>
-<%=submit_tag "submit"%>
-<%end%>
+<%if !session[:user_id]%>
+  Sign in to save posts:
 <% end %>
 
 <%= form_tag "/filter" do %>

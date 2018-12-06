@@ -12,44 +12,48 @@
 
 <h2>My Wellness Intentions:</h2>
 
-<div>
-  <% @user.intentions.each do |intention| %>
-   <%= intention.name %>: <%= pluralize(intention.posts_count, 'Post') %><br>
+<% if @user.intentions.empty? %>
+  <%= "You haven't set any intentions yet!" %>
+<% else %>
+  <div>
+    <% @user.intentions.each do |intention| %>
+     <%= intention.name %>: <%= pluralize(intention.posts_count, 'Post') %><br>
+      <% end %>
+    <br>
+  </div>
+
+  <% @all_intentions.each do |intention_group| %>
+    <% if intention_group == @incomplete_intentions %>
+      <h2><%= 'Incomplete Intentions' %></h2>
+    <% else %>
+      <h2><%= 'Complete Intentions' %></h2>
     <% end %>
-  <br>
-</div>
 
-<% @all_intentions.each do |intention_group| %>
-  <% if intention_group == @incomplete_intentions %>
-    <h2><%= 'Incomplete Intentions' %></h2>
-  <% else %>
-    <h2><%= 'Complete Intentions' %></h2>
-  <% end %>
+    <% intention_group.each do |intention| %>
+     <h3><%= intention.name %></h3>
+     <h5> <%= intention.complete == true ? 'COMPLETE' : 'INCOMPLETE' %> </h5>
 
-  <% intention_group.each do |intention| %>
-   <h3><%= intention.name %></h3>
-   <h5> <%= intention.complete == true ? 'COMPLETE' : 'INCOMPLETE' %> </h5>
+     <%= form_for intention, method: 'patch', url: change_intention_status_path(intention) do |f| %>
+       <% if intention.complete == false %>
+        <%= f.submit 'Mark as Complete' %>
+       <% else %>
+        <%= f.submit 'Mark as Incomplete' %>
+      <% end %>
+     <% end %>
 
-   <%= form_for intention, method: 'patch', url: change_intention_status_path(intention) do |f| %>
-     <% if intention.complete == false %>
-      <%= f.submit 'Mark as Complete' %>
-     <% else %>
-      <%= f.submit 'Mark as Incomplete' %>
-    <% end %>
-   <% end %>
+      <%intention.posts.each do |post| %><br>
+        <%= post.comment %><br>
+        <%=link_to post.url %><br>
 
-    <%intention.posts.each do |post| %><br>
-      <%= post.comment %><br>
-      <%=link_to post.url %><br>
+        <% @user_post = UserPost.find_by(user_id: session[:user_id], post_id: post.id, intention_id: intention.id) %>
+        <%= form_for post, method: 'delete', url: user_post_path(@user_post) do |f| %>
+          <%= f.submit 'Remove Post From Intention'%>
+        <% end %>
 
-      <% @user_post = UserPost.find_by(user_id: session[:user_id], post_id: post.id, intention_id: intention.id) %>
-      <%= form_for post, method: 'delete', url: user_post_path(@user_post) do |f| %>
-        <%= f.submit 'Remove Post From Intention'%>
       <% end %>
 
+      <p><button><%= link_to 'Edit Intention', edit_intention_path(intention) %></button></p>
     <% end %>
 
-    <p><button><%= link_to 'Edit Intention', edit_intention_path(intention) %></button></p>
   <% end %>
-
 <% end %>

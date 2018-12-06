@@ -4,7 +4,6 @@
           # nothing to do here!
       end
 
-
       def create_then_posts
           if User.find_by(user_params)
           session[:user_id]=params[:user][:id]
@@ -24,6 +23,12 @@
           redirect_to '/signin'
         end
       end
+
+      def logout
+        session[:user_id]= nil
+        redirect_to '/signin'
+      end
+
 
       private
 
