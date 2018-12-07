@@ -48,21 +48,20 @@
   #categoriesLabel{display:block;margin:10px auto}
   #categories label{width:100px;display:inline-block;vertical-align: middle;}
   #categories input{left: 20px;vertical-align:middle;}
- .main-wrapper{width:600px;margin:20px auto;background:rgba(0,0,0,0.5);padding:50px;text-align:center;border-radius: 20px;}
- .nav-bar{:margin:0 50px auto auto; display:block; text-align: center;padding:10px;}
+ .main-wrapper{width:600px;margin: 60px auto;background:rgba(0,0,0,0.5);padding:50px;text-align:center;border-radius: 20px;}
+ .nav-bar{:margin:0px auto auto; display:block; text-align: center;position:fixed;background-color: darkSlateGrey;width:100%;padding:0;top:0}
  .nav-bar::after{content: "";
     clear: both;
     display: table;}
- .nav-bar ul {
+ .nav-bar ul {text-align: center;width:70%;justify-content:space-between;align-items:center;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
+#user-status{float:right; padding:10px;}
 .nav-bar li {
  float: left;
- width:200px;
  background-color: darkSlateGrey;
- margin: 0 5px;
  padding:10px;
 }
 ul {list-style-type:none;line-height: 2em;}
@@ -79,5 +78,5 @@ ul {list-style-type:none;line-height: 2em;}
  .top-header{margin:20px 20px 50px 20px; text-align:center;}
   button {background:darkSlateGrey; color:white;}
   a {text-decoration: none;color:peachPuff;}
-#user-status{float:right;}
+
 button {margin:5px 50px ;color:black;width:100px;height:50px;border-radius: 15px;font-size: 1em;}
