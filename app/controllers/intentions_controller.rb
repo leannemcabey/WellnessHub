@@ -23,6 +23,7 @@ class IntentionsController < ApplicationController
     end
 
     def edit
+      @user = current_user
     end
 
     # This will only be for changing the name

@@ -38,6 +38,7 @@ class PostsController < ApplicationController
 
   def new
     @post=current_user.owned_posts.build
+    @user = current_user
   end
 
   def create
@@ -54,7 +55,7 @@ class PostsController < ApplicationController
     @post.save
 
     if @post.id
-      redirect_to edit_post_path(@post)
+      redirect_to post_path(@post)
     else render action: :new
     end
 
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
   def update
     set_post
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to posts_path
     else render action: :edit
     end
   end

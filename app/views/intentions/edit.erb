@@ -1,3 +1,4 @@
+<div class="main-wrapper">
 <h1>Edit Your Intention</h1>
 
 <% if flash[:errors] %>
@@ -6,13 +7,14 @@
   <% end %>
 <% end %>
 
-<%= form_for @intention do |f| %>
+<%= form_for @intention, html: {class:"form"} do |f| %>
   Intention Name: <%= f.text_field :name %><br>
   <%= f.submit %>
 <% end %>
 
 <p>
-<%= form_for @intention, method: 'delete' do |f| %>
+<%= form_for @intention, method: 'delete', html: {class:"form delete"} do |f| %>
   <%= f.submit 'Delete Intention' %>
 <% end %>
 </p>
+</div>

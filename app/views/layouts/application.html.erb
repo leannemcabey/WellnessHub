@@ -22,18 +22,18 @@
 
           <% end %>
     <li> <%= link_to "Browse Wellness Posts", posts_path %> </li>
-    <li> <%= link_to "Set a New Intention", new_intention_path %> </li>
-    <% if session[:user_id] %>
-  <li><%= link_to "Share a Resource", new_post_path %> </h3></li>
-      <li> <%= link_to "Logout", logout_path %></li>
-
-    <% else %>
-      <li> <%= link_to "Login", login_path %></li>
+    <% if session[:user_id]%>
+      <li> <%= link_to "Set a New Intention", new_intention_path %> </li>
     <% end %>
-    </ul>
-<% if @user && @user.id %>
-<div id=user-status> Logged in as <%=@user.name%></div>
-<% end %>
+    <% if session[:user_id] %>
+    <li><%= link_to "Share a Resource", new_post_path %> </h3></li>
+      <li> <%= link_to "Logout", logout_path %></li>
+    <% end %>
+  <% if @user && @user.id %>
+  <li> Logged in as <%=@user.name%>
+    <button> <%= link_to "Edit User", edit_user_path(@user) %> </button></li>
+  <% end %>
+</ul>
     </div>
 
 

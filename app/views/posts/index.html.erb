@@ -3,65 +3,81 @@
 
 <div class="main-wrapper">
   <div class="top-header">
-  <h1 > Wellness Posts </h1>
-  <%if flash[:errors]%>
-  <%flash[:errors].each do |error|%>
-  <%=error %><br>
-  <% end %>
-  <% end %>
-  <%if flash[:messages]%>
-    <%flash[:messages].each do |error|%>
-    <%=error %><br>
-    <% end %>
-  <% end %>
+    <h1 > Wellness Posts </h1>
 
-  <%if !session[:user_id]%>
-    Sign in to save posts:
-  <% end %>
+    <%if flash[:errors]%>
+      <%flash[:errors].each do |error|%>
+        <%=error %><br>
+      <% end %>
+    <% end %>
+
+    <%if flash[:messages]%>
+      <%flash[:messages].each do |error|%>
+        <%=error %><br>
+      <% end %>
+    <% end %>
+
+    <%if !session[:user_id]%>
+      Sign in to save posts:
+    <% end %>
   </div>
 
-  <%= form_tag "/filter" do %>
-  <%=collection_select(:category, :id, @all_categories, :id, :name, include_blank: "All", prompt: "Please choose a category")%>
-  <%= submit_tag "Filter Posts by category"%>
-  <% end %>
-<div class="results">
-  <%@categories.each do |category|%>
-     <h2 class=header><%= category.name %></h2>
-     <% category.posts.each do |post|%>
-     <br>
-     <div class="post">
-          <h3 class="post-title"><%=post.title%></h3>
-        <div class="post-comment"><%=post.comment %></div>
-         <%=link_to post.url, post.url %>
-         <div id=savepostel>
-         <button class=savebutton>Save to my intentions</button>
-         <div class=post-save>
-         <% if session[:user_id]%>
-           <%=form_for @user_post do |f|%>
-             <%=f.text_field :intention_name, list: "intentions_autocomplete", placeholder: "enter an intention"%>
-             <%=f.hidden_field :post_id, value: post.id  %>
-             <%=f.hidden_field :user_id, value: @user.id  %>
-             <datalist id="intentions_autocomplete">
-              <% @intentions.each do |category| %>
-                <option value="<%= category.name %>">
-              <% end %>
-             </datalist>
-             <%= f.submit("save") %>
-           <% end %>
-           </div>
-           </div>
-           <% if session[:user_id] && post.owner_id==@user.id %>
-             You posted this.<%=button_to('edit post', edit_post_path(post.id), method: "get")%>
-             <%=button_to('delete post', post_path(post),
-              method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
-              <% end %>
-        <% else %>
-          <%= link_to 'sign in','/signin' %> to save this post
-        <% end %>
-
-          </div>
+  <div>
+    <%= form_tag "/filter" do %>
+      <%=collection_select(:category, :id, @all_categories, :id, :name, include_blank: "All", prompt: "Please choose a category")%>
+      <%= submit_tag "Filter Posts by category"%>
     <% end %>
-  <%end%>
+  </div>
+
+  <div class="results">
+    <%@categories.each do |category|%>
+      <h2 class=header><%= category.name %></h2>
+
+      <% if category.posts.length > 0 %>
+        <% category.posts.each do |post|%><br>
+
+          <div class="post">
+            <h3 class="post-title"> <%= link_to post.title, post_path(post)%> </h3>
+            <div class="post-comment">
+              <%=post.comment %>
+            </div>
+            <%=link_to post.url, post.url %>
+
+
+              <% if session[:user_id]%>
+              <div id=savepostel>
+              <button class=savebutton>Save to my intentions</button>
+              <div class=post-save>
+                <%=form_for @user_post do |f|%>
+                  <%=f.text_field :intention_name, list: "intentions_autocomplete", placeholder: "enter an intention"%>
+                  <%=f.hidden_field :post_id, value: post.id  %>
+                  <%=f.hidden_field :user_id, value: @user.id  %>
+                  <datalist id="intentions_autocomplete">
+                    <% @intentions.each do |intention| %>
+                      <option value="<%= intention.name %>">
+                    <% end %>
+                  </datalist>
+                  <%= f.submit("save") %>
+                <% end %>
+                </div>
+                </div>
+                <% if session[:user_id] && post.owner_id==@user.id %>
+                  <hr>
+                  <p>
+                    Post Owner Actions:
+                  </p>
+                  <%=button_to('edit post', edit_post_path(post.id), method: "get")%>
+                  <%=button_to('delete post', post_path(post), method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
+                <% end %>
+              <% else %>
+                <%= link_to 'sign in','/signin' %> to save this post
+              <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        There aren't any posts in this category yet. <%= link_to 'Click here to add one!', new_post_path %>
+      <% end %>
+    <%end%>
   </div>
 </div>
 <script>

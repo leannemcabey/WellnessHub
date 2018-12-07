@@ -1,6 +1,7 @@
+<div class='main-wrapper'>
 <h1>Edit Post</h1>
 
-<%= form_for @post do |f| %>
+<%= form_for @post, html: {class:'form'} do |f| %>
   <%=f.label :title%>
   <%=f.text_field :title%><br>
   <%=f.label :comment%>
@@ -9,8 +10,6 @@
   <%=f.text_field :address%><br>
   <%=f.label :url%>
   <%=f.url_field :url%><br>
-  <%=f.label :owner_id%>
-  <%=f.collection_select :owner_id, User.all, :id, :name, prompt: true %><br>
   <%=f.label :categories%>
   <%= f.fields_for :post_categories, @post.post_categories.build do |post_categories_fields| %>
     <%= post_categories_fields.collection_check_boxes :id, Category.all, :id, :name, prompt: true %><br>
@@ -18,3 +17,4 @@
 
   <%=f.submit %>
 <%end %>
+</div>
