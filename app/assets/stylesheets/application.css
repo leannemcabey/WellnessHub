@@ -71,7 +71,7 @@ ul {list-style-type:none;line-height: 2em;}
  .header-intention{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;display:flex;justify-content:space-between;align-items:center;}
  .user-top{width:100%; margin:0px auto; background:rgba(0,0,0,0.3);padding: 20px;
  box-sizing: border-box;text-align: center;border-radius: 20px;}
- .post{width:100%; margin:0px auto; background:rgba(0,50,50,0.7);padding: 20px;
+ .post{width:100%; margin:0px auto; background:rgba(0,50,50,0.8);padding: 20px;
  box-sizing: border-box;text-align: center;border-radius: 20px;}
  .post-title{margin:10px auto;}
  .post-comment{margin:10px;}
@@ -80,4 +80,4 @@ ul {list-style-type:none;line-height: 2em;}
   button {background:darkSlateGrey; color:white;}
   a {text-decoration: none;color:peachPuff;}
 #user-status{float:right;}
-button {color:black;}
+button {margin:5px 50px ;color:black;width:100px;height:50px;border-radius: 15px;font-size: 1em;}
