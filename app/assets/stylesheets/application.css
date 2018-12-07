@@ -101,3 +101,8 @@ button {
 input[type=submit] {
   margin:5px
 }
+
+.savebutton {
+  color: peachPuff;
+  margin: 10px;
+}
