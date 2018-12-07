@@ -1,6 +1,7 @@
 <h1> Edit User </h1>
 
-<%= form_for @user do |f| %>
+<div class="main-wrapper">
+<%= form_for @user, html: {class:'form'} do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :email %>
@@ -11,7 +12,8 @@
 <% end %>
 
 <p>
-<%= form_for @user, method: 'DELETE' do |f| %>
+<%= form_for @user, method: 'DELETE', html: {class:'form delete'} do |f| %>
   <%= f.submit 'Delete User' %>
 <% end %>
 </p>
+</div>

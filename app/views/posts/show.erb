@@ -1,44 +1,44 @@
-<h2><%= @post.title %></h2>
+<div class='main-wrapper'>
+  <h2><%= @post.title %></h2>
 
-<div>
-  Author Comment: <%= @post.comment.length > 0 ? @post.comment : 'N/A' %>
+  <div>
+    Author Comment: <%= @post.comment.length > 0 ? @post.comment : 'N/A' %>
+  </div>
+  <br>
+  <div>
+    Url: <%= @post.url.length > 0 ? @post.url : 'N/A' %>
+  </div>
+  <br>
+  <div>
+    Categories: |
+      <% @post.category_name.each do |name| %>
+        <%= name %> |
+      <% end %>
+  </div>
+  <br>
+  <div>
+    Posted by: <%= @post.owner_name %><br>
+  </div>
+  <br>
+  <div>
+    Followed by: <%= pluralize(@post.followed_count, 'User') %>
+  </div>
+  Save to my intentions: <br>
+  <%=form_for @user_post do |f|%>
+    <%=f.label :intention_name, "intention:"%>
+    <%=f.text_field :intention_name, list: "intentions_autocomplete"%>
+    <%=f.hidden_field :post_id, value: @post.id  %>
+    <%=f.hidden_field :user_id, value: @user.id  %>
+    <datalist id="intentions_autocomplete">
+     <% @intentions.each do |category| %>
+       <option value="<%= category.name %>">
+     <% end %>
+    </datalist>
+    <%= f.submit("save to post") %>
+  <% end %>
+  <% if session[:user_id] && @post.owner_id==@user.id %>
+  You posted this.<%=button_to('edit post', edit_post_path(@post.id), method: "get")%>
+  <%=button_to('delete post', post_path(@post),
+   method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
+  <% end %>
 </div>
-<br>
-<div>
-  Url: <%= @post.url.length > 0 ? @post.url : 'N/A' %>
-</div>
-<br>
-<div>
-  Categories:
-  <ul>
-    <% @post.category_name.each do |name| %>
-      <li> <%= name %> </li>
-    <% end %>
-  </ul>
-</div>
-<br>
-<div>
-  Posted by: <%= @post.owner_name %><br>
-</div>
-<br>
-<div>
-  Followed by: <%= pluralize(@post.followed_count, 'User') %>
-</div>
-Save to my intentions: <br>
-<%=form_for @user_post do |f|%>
-  <%=f.label :intention_name, "intention:"%>
-  <%=f.text_field :intention_name, list: "intentions_autocomplete"%>
-  <%=f.hidden_field :post_id, value: @post.id  %>
-  <%=f.hidden_field :user_id, value: @user.id  %>
-  <datalist id="intentions_autocomplete">
-   <% @intentions.each do |category| %>
-     <option value="<%= category.name %>">
-   <% end %>
-  </datalist>
-  <%= f.submit("save to post") %>
-<% end %>
-<% if session[:user_id] && @post.owner_id==@user.id %>
-You posted this.<%=button_to('edit post', edit_post_path(@post.id), method: "get")%>
-<%=button_to('delete post', post_path(@post),
- method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
-<% end %>

@@ -33,7 +33,7 @@
           <h3 class="post-title"><%=post.title%></h3>
         <div class="post-comment"><%=post.comment %></div>
          <%=link_to post.url, post.url %>
-         <div class=post-save>
+         <div class=post-button>
          <% if session[:user_id]%>
            Save to my intentions: <br>
            <%=form_for @user_post do |f|%>

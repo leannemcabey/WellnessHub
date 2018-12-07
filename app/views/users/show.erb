@@ -1,9 +1,6 @@
 <div class="main-wrapper">
 <h1> Welcome, <%= @user.name %>! </h1>
 
-<div>
-  <button> <%= link_to "Edit User", edit_user_path(@user) %> </button>
-</div>
 <br>
 <div>
   <% if flash[:messages] %>
@@ -15,6 +12,9 @@
 
 <% if @user.intentions.empty? %>
   <%= "You haven't set any intentions yet!" %>
+<div>
+  <%= link_to 'Set an Intention', new_intention_path %>
+</div>
 <% else %>
 
     <% @user.intentions.each do |intention| %>
@@ -51,13 +51,16 @@
 
       <%intention.posts.each do |post| %><br>
       <div class=post>
-        <%= post.comment %><br>
+        <h3 class="post-title"><%=post.title%></h3>
+        <div class="post-comment"><%= post.comment %><br></div
         <%=link_to post.url %><br>
 
+      <div class="post-button">
         <% @user_post = UserPost.find_by(user_id: session[:user_id], post_id: post.id, intention_id: intention.id) %>
         <%= form_for post, method: 'delete', url: user_post_path(@user_post) do |f| %>
           <%= f.submit 'Remove Post From Intention'%>
         <% end %>
+      </div>
 
       </div>
       <% end %>

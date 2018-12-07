@@ -42,6 +42,10 @@
     cursor: pointer;
   }
 
+  .delete input[type=submit]{
+    background-color: red;
+  }
+
   .form input[type=submit] :hover {
     background-color: #45a049;
   }
@@ -53,10 +57,11 @@
  .nav-bar::after{content: "";
     clear: both;
     display: table;}
- .nav-bar ul {text-align: center;width:70%;justify-content:space-between;align-items:center;
+ .nav-bar ul {text-align: center;width:100%;justify-content:space-between;align-items:center;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
 }
 #user-status{float:right; padding:10px;}
 .nav-bar li {
@@ -66,7 +71,7 @@
 }
 ul {list-style-type:none;line-height: 2em;}
  .intention{width:100%;margin:20px auto;padding:10px;background:rgba(0,0,0,0.6);text-align:center;box-sizing: border-box;border-radius: 20px;}
- .header{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;}
+ .header{width:100%; margin:50px auto;box-sizing: border-box;text-align: center;}
  .header-intention{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;display:flex;justify-content:space-between;align-items:center;}
  .user-top{width:100%; margin:0px auto; background:rgba(0,0,0,0.3);padding: 20px;
  box-sizing: border-box;text-align: center;border-radius: 20px;}
@@ -74,9 +79,20 @@ ul {list-style-type:none;line-height: 2em;}
  box-sizing: border-box;text-align: center;border-radius: 20px;}
  .post-title{margin:10px auto;}
  .post-comment{margin:10px;}
- .post-save{margin-top:20px;}
+ .post-button{margin-top:20px;}
  .top-header{margin:20px 20px 50px 20px; text-align:center;}
-  button {background:darkSlateGrey; color:white;}
-  a {text-decoration: none;color:peachPuff;}
+a {text-decoration: none;color:peachPuff;}
 
-button {margin:5px 50px ;color:black;width:100px;height:50px;border-radius: 15px;font-size: 1em;}
+button {
+  background: darkSlateGrey;
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1);
+  margin: 5px 50px;
+  color: black;
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 0.8em;}
+
+input[type=submit] {
+  margin:5px
+}
