@@ -1,12 +1,12 @@
-Category.create(name: 'Mental Heath')
-Category.create(name: 'Relationships')
-Category.create(name: 'Therapy')
-Category.create(name: 'Productivity')
-Category.create(name: 'Mindfulness')
-Category.create(name: 'Exercise')
-Category.create(name: 'Nutrition & Medicine')
-Category.create(name: 'Sleep')
-
+mental=Category.create(name: 'Mental Heath')
+relations=Category.create(name: 'Relationships')
+therapy=Category.create(name: 'Therapy')
+productivity=Category.create(name: 'Productivity')
+mindfulness=Category.create(name: 'Mindfulness')
+exercising=Category.create(name: 'Exercise')
+nutrition=Category.create(name: 'Nutrition & Medicine')
+sleeping=Category.create(name: 'Sleep')
+reading=Category.create(name: 'Reading')
 
 User.create(name: "Leanne", email: "leannecabey@mail.com", password: "1234567")
 
@@ -34,3 +34,32 @@ UserPost.create(user_id: 1, post_id: 1, intention_id: 1)
 UserPost.create(user_id: 1, post_id: 2, intention_id: 2)
 UserPost.create(user_id: 1, post_id: 3, intention_id: 3)
 UserPost.create(user_id: 1, post_id: 4, intention_id: 3)
+
+sky=User.create(name: 'Skylar', email: 'skylar@fakeemail.com', password: '12345')
+
+
+
+productive=Intention.create(user: sky, name: 'be more productive', complete:0)
+
+Post.create(title: 'Why procrastinators procrastinate', comment:'', url: 'https://waitbutwhy.com/2013/10/why-procrastinators-procrastinate.html', owner: sky)
+Post.create(title: 'Intro to Getting Things Done', comment:'Getting things done is a  organization system many people have found helpful. Read about it here.', url: 'https://zenkit.com/en/blog/a-beginners-guide-to-getting-things-done/', owner: sky)
+PostCategory.create(post_id: 5, category:productivity)
+PostCategory.create(post_id: 6, category:productivity)
+UserPost.create(user: sky, post_id: 5, intention:productive)
+UserPost.create(user: sky, post_id: 6, intention:productive)
+
+read=Intention.create(user: sky, name: 'Read More Non-Fiction', complete:0)
+Post.create(title:'The World Outside Your Head', comment:'Written by a social scientist,This book discusses how freedom comes from skill rather than comfort and how advertisements rob us of mental energy', url: 'https://www.goodreads.com/book/show/22237171-the-world-beyond-your-head', owner: sky)
+Post.create(title: 'A History of God', comment: 'book about religion. Great read', url:"https://www.amazon.com/History-God-000-Year-Judaism-Christianity/dp/0345384563", owner: sky)
+PostCategory.create(post_id: 7, category:reading)
+PostCategory.create(post_id: 8, category:reading)
+UserPost.create(user: sky, post_id: 7, intention:read)
+UserPost.create(user: sky, post_id: 8, intention:read)
+
+exercise=Intention.create(user:sky, name: 'exercise more', complete:0)
+Post.create( title: '10 stetches for men', comment: '', url: 'https://www.mensjournal.com/health-fitness/10-best-stretches-men-according-10-trainers/', owner: sky)
+Post.create( title: 'Benifits of Exercise', comment: '', url: 'https://www.healthline.com/nutrition/10-benefits-of-exercise', owner: sky)
+PostCategory.create(post_id: 9, category:exercising)
+PostCategory.create(post_id: 10, category:exercising)
+UserPost.create(user: sky, post_id: 9, intention:exercise)
+UserPost.create(user: sky, post_id: 10, intention:exercise)
