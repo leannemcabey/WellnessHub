@@ -37,7 +37,7 @@
         <% category.posts.each do |post|%><br>
 
           <div class="post">
-            <h3 class="post-title"> <%=post.title%> </h3>
+            <h3 class="post-title"> <%= link_to post.title, post_path(post)%> </h3>
             <div class="post-comment">
               <%=post.comment %>
             </div>
@@ -45,6 +45,7 @@
 
             <div class=post-button>
               <% if session[:user_id]%>
+                <hr>
                 Save to my intentions:<br>
                 <%=form_for @user_post do |f|%>
                   <%=f.text_field :intention_name, list: "intentions_autocomplete", placeholder: "enter an intention"%>
@@ -59,7 +60,11 @@
                 <% end %>
 
                 <% if session[:user_id] && post.owner_id==@user.id %>
-                  You posted this.<%=button_to('edit post', edit_post_path(post.id), method: "get")%>
+                  <hr>
+                  <p>
+                    Post Owner Actions:
+                  </p>
+                  <%=button_to('edit post', edit_post_path(post.id), method: "get")%>
                   <%=button_to('delete post', post_path(post), method: "delete", remote: true, data: { confirm: 'Are you sure?'})%>
                 <% end %>
               <% else %>

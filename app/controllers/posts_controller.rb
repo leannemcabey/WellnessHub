@@ -55,7 +55,7 @@ class PostsController < ApplicationController
     @post.save
 
     if @post.id
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else render action: :new
     end
 

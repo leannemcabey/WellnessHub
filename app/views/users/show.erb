@@ -51,9 +51,9 @@
 
       <%intention.posts.each do |post| %><br>
       <div class=post>
-        <h3 class="post-title"><%=post.title%></h3>
-        <div class="post-comment"><%= post.comment %><br></div
-        <%=link_to post.url %><br>
+        <h3 class="post-title"><%= link_to post.title, post_path(post)%></h3>
+        <div class="post-comment"><%= post.comment %><br></div>
+        <%=link_to post.url, post.url %><br>
 
       <div class="post-button">
         <% @user_post = UserPost.find_by(user_id: session[:user_id], post_id: post.id, intention_id: intention.id) %>
