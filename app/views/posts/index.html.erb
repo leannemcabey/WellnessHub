@@ -33,9 +33,10 @@
           <h3 class="post-title"><%=post.title%></h3>
         <div class="post-comment"><%=post.comment %></div>
          <%=link_to post.url, post.url %>
+         <div id=savepostel>
+         <button class=savebutton>Save to my intentions</button>
          <div class=post-save>
          <% if session[:user_id]%>
-           Save to my intentions: <br>
            <%=form_for @user_post do |f|%>
              <%=f.text_field :intention_name, list: "intentions_autocomplete", placeholder: "enter an intention"%>
              <%=f.hidden_field :post_id, value: post.id  %>
@@ -47,6 +48,8 @@
              </datalist>
              <%= f.submit("save") %>
            <% end %>
+           </div>
+           </div>
            <% if session[:user_id] && post.owner_id==@user.id %>
              You posted this.<%=button_to('edit post', edit_post_path(post.id), method: "get")%>
              <%=button_to('delete post', post_path(post),
@@ -55,9 +58,17 @@
         <% else %>
           <%= link_to 'sign in','/signin' %> to save this post
         <% end %>
-        </div>
+
           </div>
     <% end %>
   <%end%>
   </div>
 </div>
+<script>
+  var savebutton = document.getElementsByClassName('savebutton');
+  function showform(){event.target.nextElementSibling.className="show"; console.log(event.target);}
+
+  for(var i=0; i < savebutton.length; i++){savebutton[i].addEventListener('click',showform);}
+
+
+</script>
