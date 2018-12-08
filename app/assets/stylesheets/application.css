@@ -71,7 +71,7 @@
 }
 ul {list-style-type:none;line-height: 2em;}
  .intention{width:100%;margin:20px auto;padding:10px;background:rgba(0,0,0,0.6);text-align:center;box-sizing: border-box;border-radius: 20px;}
- .header{width:100%; margin:50px auto;box-sizing: border-box;text-align: center;}
+ .header{width:100%; margin:50px auto 10px auto;box-sizing: border-box;text-align: center;}
  .header-intention{width:100%; margin:10px auto;box-sizing: border-box;text-align: center;display:flex;justify-content:space-between;align-items:center;}
  .user-top{width:100%; margin:0px auto; background:rgba(0,0,0,0.3);padding: 20px;
  box-sizing: border-box;text-align: center;border-radius: 20px;}

@@ -14,9 +14,12 @@ class UserPost < ApplicationRecord
   end
 
   def intention_name=(name)
+
     found_intention = Intention.find_or_create_by(name: name)
     self.intention = found_intention
+    found_intention.complete=false;
    self.user.intentions << found_intention
+   self.save
   end
 
 
