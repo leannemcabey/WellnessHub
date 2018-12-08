@@ -7,8 +7,15 @@ class UserPostsController < ApplicationController
       redirect_to "/posts"
       return
     end
-  flash[:messages]=["the post has been saved"]
+    db_record = UserPost.find_by(user_id: @new_post.user_id, post_id:@new_post.post_id, intention_id:@new_post.intention_id)
+    if !db_record
+      @new_post.save
+      flash[:messages]=["the post has been saved"]
         redirect_to "/posts"
+    else
+      flash[:messages]=["Already saved"]
+      redirect_to "/posts"
+    end
   end
 
   def destroy
